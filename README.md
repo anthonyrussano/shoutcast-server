@@ -1,3 +1,3 @@
-RUN wget http://download.nullsoft.com/shoutcast/tools/sc_serv${SC_VERSION}_linux_x64.tar.gz && \
-    tar xzf sc_serv${SC_VERSION}_linux_x64.tar.gz && \
-    rm sc_serv${SC_VERSION}_linux_x64.tar.gz
+- wget https://download.nullsoft.com/shoutcast/tools/sc_serv2_linux_x64-latest.tar.gz
+- tar xzf sc_serv2_linux_x64-latest.tar.gz
+- rm sc_serv2_linux_x64-latest.tar.gz
