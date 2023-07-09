@@ -1,22 +1,14 @@
 FROM ubuntu:latest
-# # Use an official Alpine Linux base image
-# FROM alpine:latest
 
-# Set environment variables
-ENV SC_PORT 8090
-
-# Install necessary packages
 RUN apt-get update && apt-get install -y wget gcc libmp3lame-dev
-# RUN apk add --no-cache lame
 
-# Copy the Shoutcast server files and configuration
-COPY . /sc_serv/
+RUN curl -o /tmp/shoutcast.tar.gz https://pin.wikip.co/api/shares/shoutcast-server/files/6a2eefd6-0d0a-4c86-9283-1e809de1be46 \
+  && tar -xzf /tmp/shoutcast.tar.gz -C /tmp \
+  && rm /tmp/shoutcast.tar.gz
+COPY sc_serv.conf /tmp/
 
-# Set the working directory
-WORKDIR /sc_serv
+WORKDIR /tmp
 
-# Expose the Shoutcast server port
-EXPOSE $SC_PORT
+EXPOSE 8000
 
-# Run the Shoutcast server
-CMD ["./sc_serv", "sc_serv.conf"]
+CMD ["./tmp/sc_serv", "/tmp/sc_serv.conf"]
